@@ -1,0 +1,226 @@
+
+# Codebook
+
+The run_analysis.R file contains an R script that performs performs data preparation as outlined in the course project's definition. The data preparation follows the six steps outlined below
+
+### 1. Download the dataset
+
+The Dataset was downloaded under the folder UCI HAR Dataset
+
+### 2. Reading dataframes and assigning variables to each dataset
+
+features: 561 rows, 2 columns
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ.
+
+activities: 6 rows, 2 columns
+List of activities performed when the corresponding measurements were taken and its codes (labels)
+
+subject_test : 2947 rows, 1 column
+contains test data of 9/30 volunteer test subjects being observed
+
+x_test: 2947 rows, 561 columns
+contains recorded features test data
+
+y_test: 2947 rows, 1 columns
+contains test data of activities’code labels
+
+subject_train: 7352 rows, 1 column
+contains train data of 21/30 volunteer subjects being observed
+
+x_train: 7352 rows, 561 columns
+contains recorded features train data
+
+y_train: 7352 rows, 1 columns
+contains train data of activities’code labels
+
+### 3. Merging the training and test sets to create a single dataset
+
+* X (10299 rows, 561 columns) is created by merging x_train and x_test using rbind() 
+* Y (10299 rows, 1 column) is created by merging y_train and y_test using rbind() 
+* Subject (10299 rows, 1 column) is created by merging subject_train and subject_test using rbind() 
+* Merged_Data (10299 rows, 563 column) is created by merging Subject, Y and X using cbind()
+
+### 4. Extracting only the measurements on the mean and standard deviation for each measurement
+
+TidyData (10299 rows, 88 columns) is created by subsetting Merged_Data, selecting only columns: subject, code and the measurements on the mean and standard deviation (std) for each measurement
+
+### 5. Replacing codes with descriptive names in the Tidy data set (TidyData)
+
+The numbers in code column of the TidyData are replaced with corresponding activity taken from second column of the activities dataset
+
+### 6. Labeling all variables in the tidy data set with descriptive variable names
+
+* code column in TidyData renamed into activities
+* All Acc in column names replaced by Accelerometer
+* All Gyro in column names replaced by Gyroscope
+* All BodyBody in column names replaced by Body
+* All Mag in column names replaced by Magnitude
+* All start with character f in column names replaced by Frequency
+* All start with character t in column names replaced by Time
+
+### 7. Creating an independent tidy dataset with the average of each variable for each activity per subject
+
+FinalData (180 rows, 88 columns) is created by summarizing TidyData taking the means of each variable 
+for each activity and each subject, after grouping by subject and activity. The FinalData is then
+exported into FinalData.txt file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
